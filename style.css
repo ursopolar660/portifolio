@@ -221,3 +221,92 @@ body{
         }
     }
 }
+
+@media (max-width: 768px) {
+    body header {
+        & .menu-button {
+            display: none;
+            background-color: #4d7cfe;
+            color: #fff;
+            border: none;
+            padding: calc(var(--cep) * 1) calc(var(--cep) * 2);
+            border-radius: calc(var(--cep) * 0.5);
+            cursor: pointer;
+            font-size: calc(var(--cep) * 1.5);
+        }
+
+        & ul {
+            display: none;
+        }
+    }
+
+    body header.active {
+        & ul {
+            display: flex;
+        }
+    }
+
+    body header .menu-button {
+        display: block;
+    }
+    body {
+        & header {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: calc(var(--cep) * 2) calc(var(--cep) * 3);
+
+            & ul {
+                flex-direction: column;
+                gap: calc(var(--cep) * 2);
+            }
+        }
+
+        & .principal {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: calc(var(--cep) * 2);
+
+            & h1 {
+                font-size: calc(var(--cep) * 4);
+                white-space: normal;
+                overflow: visible;
+                text-overflow: unset;
+
+            }
+
+            & p {
+                font-size: calc(var(--cep) * 1.8);
+            }
+
+            & .botao {
+                padding: calc(var(--cep) * 1) calc(var(--cep) * 2);
+            }
+        }
+
+        & .secao {
+            padding: calc(var(--cep) * 5) calc(var(--cep) * 3);
+
+            & .grade-projeto {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        & .sobre {
+            flex-direction: column;
+            align-items: center;
+
+            & .imgperfil {
+                margin-right: 0;
+                margin-bottom: calc(var(--cep) * 2);
+            }
+
+            & .texto {
+                text-align: center;
+            }
+
+            & .habilidades {
+                justify-content: center;
+            }
+        }
+    }
+}
