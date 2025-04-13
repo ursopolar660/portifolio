@@ -1,0 +1,223 @@
+:root{
+    --cep: calc(1em - 6px);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    
+}
+
+
+body{
+    background: #0a0a0a;
+    color: #fff;
+    /* header */
+
+    & header{
+        display: flex;
+        align-items: center;
+        padding: calc(var(--cep) * 2) calc(var(--cep) * 5);
+        background: #1a1a1a;
+        
+        & ul{
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            gap: calc(var(--cep) * 5);
+
+            & li{
+                cursor: pointer;
+                transition: all 0.4s ease;
+                border-bottom: #4d7cfe 1px solid;
+                border-radius: 5px;
+                padding: calc(var(--cep) * 1) ;
+
+                &:hover{
+                    background-image: linear-gradient(to top, #4d7cfe 40%, #1a1a1a 60%);
+                    transform: translateY(-2px);
+                }
+                & a{
+                    text-decoration: none;
+                    color: inherit;
+                }
+            }
+        }
+    }
+
+    & .principal{
+        display: flex;
+        align-items: center;
+        margin-left: calc(var(--cep) * 3);
+        min-height: 85vh;
+        
+        & h1{
+            overflow-y: hidden;
+            font-size: calc(var(--cep) * 8);
+            line-height: 1.1;
+            margin-bottom: calc(var(--cep) * 0.2);
+            letter-spacing: calc(var(--cep) * -0.05);
+
+            & span{
+                color: #ff6347;
+            }
+
+        }
+        & p{
+            font-size: calc(var(--cep) * 2);
+            margin-block: calc(var(--cep) * 1.2);
+            color: #ccc;
+            max-width: calc(var(--cep) * 45);
+        }
+
+        & .botao{
+            display: inline-block;
+            padding: calc(var(--cep) * 1.5) calc(var(--cep) * 3);
+            background-color: #4d7cfe;
+            color: #fff;
+            font-weight: bold;
+            border-radius: calc(var(--cep) * 0.5);
+            text-decoration: none;
+            transition: all 1.0s ease;
+        }
+    }
+    
+    & .secao{
+        padding: calc(var(--cep) * 10) calc(var(--cep) * 5);
+
+        
+        & .titulo-secao{
+            font-size: calc(var(--cep) * 4.2);
+            margin-bottom: calc(var(--cep) * 4);
+            margin-left: calc(var(--cep) * 1);
+
+            &::after{
+                content: '';
+                display: block;
+                width: calc(var(--cep) * 5);
+                height: calc(var(--cep) * 0.1);
+                background-color: #4d7cfe;
+            }
+        }
+
+        & .grade-projeto{
+            margin-left: calc(var(--cep) * 1);
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(calc(var(--cep)*20), calc(var(--cep)* 30)));
+            gap: calc(var(--cep) * 3);
+
+            & .card-projeto{
+                background-color: #161616;
+                border-radius: calc(var(--cep) * 0.5);
+                padding: calc(var(--cep) * 3);
+                overflow: hidden;
+                transition: all 0.5s ease;
+
+                & img{
+                    width: 100%;
+                    height: calc(var(--cep) * 20);
+                    object-fit: cover;
+                    margin-bottom: calc(var(--cep) * 2);
+                    border-radius: calc(var(--cep) * 0.5);
+                }
+
+                & .info-projeto{
+                    display: flex;
+                    flex-direction: column;
+                    gap: calc(var(--cep) * 1);
+                    margin-bottom: calc(var(--cep) * 2);
+
+                    & h3{
+                        font-size: calc(var(--cep) * 2.5);
+                        color: #4d7cfe;
+                        margin-bottom: calc(var(--cep) * 0.5);
+                    }
+
+                    & p{
+                        font-size: calc(var(--cep) * 1.5);
+                        color: #ccc;
+                        line-height: 1.5;
+                    }
+
+                    & a{
+                        text-decoration: none;
+                        color: #4d7cfe;
+                        font-weight: bold;
+                        transition: all 0.3s ease;
+                        margin-top: calc(var(--cep) * 1.2);
+                        border: #4d7cfe 1px solid;
+                        padding: calc(var(--cep) * 1.5);
+                        border-radius: calc(var(--cep) * 0.5);
+                        width: fit-content;
+
+                        &:hover{
+                            color: #fff;
+                            border-color: #fff;
+                            transform: translateY(1px);
+                        }
+                    }
+                }
+            }
+
+            & .card-projeto:hover{
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+            }
+        }
+    }
+    .titulo-secao{
+        font-size: calc(var(--cep) * 4.2);
+        margin-bottom: calc(var(--cep) * 4);
+        margin-left: calc(var(--cep) * 1);
+
+        &::after{
+            content: '';
+            display: block;
+            width: calc(var(--cep) * 5);
+            height: calc(var(--cep) * 0.1);
+            background-color: #4d7cfe;
+        }
+
+    }
+
+    & .sobre{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        /* justify-content: space-around; */
+        
+        & .imgperfil{
+            height: calc(var(--cep) * 30);
+            border-radius: 35%;
+            margin-right: calc(var(--cep) * 3);
+        }
+
+        & .texto{
+            max-width: calc(var(--cep) * 40);
+            font-size: calc(var(--cep) * 1.5);
+            line-height: 1.5;
+            color: #ccc;
+        }
+
+        & .habilidades{
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--cep) * 0.5);
+            margin-top: calc(var(--cep) * 3);
+            list-style: none;
+
+            & li{
+                background-color: #4d7cfe;
+                color: #fff;
+                padding: calc(var(--cep) * 1) calc(var(--cep) * 2);
+                border-radius: calc(var(--cep) * 0.5);
+                font-size: calc(var(--cep) * 1.5);
+                transition: all 0.3s ease;
+            }
+        }
+    }
+}
