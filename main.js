@@ -1,36 +1,88 @@
-const phrases = [
-    "Marcos Túlio.",
-    "Urso Polar.",
-];
+// Seletores globais
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('nav ul li a');
+const logo = document.querySelector('.logo');
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav ul');
+const contactButton = document.querySelector('.contact-button');
 
-let currentPhraseIndex = 0;
-let currentCharIndex = 0;
-const typingSpeed = 150; // Velocidade de digitação em milissegundos
-const h1Element = document.getElementById("mudar"); // Corrigido o método
+// Função: Atualizar link ativo no menu com base no scroll
+function changeActiveLink() {
+    let index = sections.length;
 
-function type() {
-    if (currentCharIndex < phrases[currentPhraseIndex].length) {
-        h1Element.textContent += phrases[currentPhraseIndex].charAt(currentCharIndex);
-        currentCharIndex++;
-        setTimeout(type, typingSpeed);
-    } else {
-        // Aguarda um tempo antes de apagar o texto
-        setTimeout(deleteText, 1000);
-    }
+    while (--index && window.scrollY + 150 < sections[index].offsetTop) {}
+
+    navLinks.forEach(link => link.classList.remove('active'));
+    navLinks[index].classList.add('active');
 }
 
-function deleteText() {
-    if (currentCharIndex > 0) {
-        h1Element.textContent = phrases[currentPhraseIndex].substring(0, currentCharIndex - 1);
-        currentCharIndex--;
-        setTimeout(deleteText, typingSpeed);
-    } else {
-        // Muda para a próxima frase
-        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-        setTimeout(type, 500); // Aguarda um tempo antes de começar a digitar a próxima frase
-    }
+// Evento: Atualizar link ativo ao rolar a página
+window.addEventListener('scroll', changeActiveLink);
+changeActiveLink(); // Chamada inicial
+
+// Função: Suavizar scroll ao clicar nos links do menu
+function smoothScroll() {
+    navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
 }
+smoothScroll();
 
-// Inicia o efeito de digitação
-type();
+// Função: Efeito de fade-in ao rolar para as seções
+function fadeInSections() {
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Remove o observador após a animação
+                }
+            });
+        },
+        { threshold: 0.2 } // Inicia o efeito quando 20% da seção está visível
+    );
 
+    sections.forEach(section => {
+        section.classList.add('hidden'); // Adiciona a classe inicial de ocultação
+        observer.observe(section);
+    });
+}
+fadeInSections();
+
+// Evento: Exibir mensagem ao clicar no botão de contato
+contactButton.addEventListener('click', () => {
+    alert('Obrigado por entrar em contato! Entraremos em breve.');
+});
+
+// Evento: Suavizar foco no header ao pressionar Enter no logo
+logo.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+});
+
+// Função: Alternar menu hamburguer
+function toggleHamburgerMenu() {
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('open');
+    });
+
+    // Fechar menu ao clicar em um link
+    navMenu.addEventListener('click', e => {
+        if (e.target.tagName === 'A') {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('open');
+        }
+    });
+}
+toggleHamburgerMenu();
